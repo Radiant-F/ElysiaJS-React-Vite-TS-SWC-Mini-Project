@@ -1,0 +1,22 @@
+{
+  "name": "elyisa_app",
+  "version": "1.0.50",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "lint": "bun test",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@elysiajs/jwt": "latest",
+    "@elysiajs/swagger": "latest",
+    "bcryptjs": "^3.0.3",
+    "elysia": "latest",
+    "postgres": "^3.4.7",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "module": "src/index.js"
+}
