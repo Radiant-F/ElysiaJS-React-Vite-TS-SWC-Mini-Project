@@ -8,6 +8,7 @@
     "test": "bun test"
   },
   "dependencies": {
+    "@elysiajs/cors": "latest",
     "@elysiajs/jwt": "latest",
     "@elysiajs/swagger": "latest",
     "bcryptjs": "^3.0.3",
