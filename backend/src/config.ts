@@ -10,6 +10,17 @@ const envSchema = z.object({
   ACCESS_TOKEN_EXPIRES_IN: z.string().default("15m"),
   REFRESH_TOKEN_EXPIRES_IN: z.string().default("7d"),
   REMEMBER_REFRESH_TOKEN_EXPIRES_IN: z.string().default("30d"),
+  CORS_ORIGINS: z.preprocess((value) => {
+    if (!value) return [];
+    if (Array.isArray(value)) return value;
+    if (typeof value === "string")
+      return value
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+    return [];
+  }, z.array(z.string().url())),
 });
 
 const rawEnv = {
@@ -25,6 +36,7 @@ const rawEnv = {
   REMEMBER_REFRESH_TOKEN_EXPIRES_IN:
     process.env.REMEMBER_REFRESH_TOKEN_EXPIRES_IN ??
     Bun.env.REMEMBER_REFRESH_TOKEN_EXPIRES_IN,
+  CORS_ORIGINS: process.env.CORS_ORIGINS ?? Bun.env.CORS_ORIGINS,
 };
 
 export type AppConfig = z.infer<typeof envSchema>;
